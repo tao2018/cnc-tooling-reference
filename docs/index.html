@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CNC Drawing Feature to Carbide Tool Selection Guide</title>
+  <meta name="description" content="A practical CNC reference for mapping drawing features, materials, tolerances and access constraints to carbide tools, holders, toolpaths and inspection gates.">
+  <meta name="robots" content="index,follow">
+  <style>
+    :root { color-scheme: light; --ink:#14202b; --muted:#526372; --line:#d9e1e7; --accent:#0b6574; --paper:#fff; --wash:#f3f7f8; }
+    * { box-sizing:border-box; }
+    body { margin:0; font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:var(--wash); }
+    main { max-width:1040px; margin:auto; padding:48px 24px 72px; background:var(--paper); }
+    h1 { font-size:clamp(2rem,4vw,3.35rem); line-height:1.08; max-width:900px; }
+    h2 { margin-top:2.4rem; border-bottom:2px solid var(--line); padding-bottom:.35rem; }
+    h3 { margin-top:1.8rem; }
+    p, li { max-width:82ch; }
+    .lede { font-size:1.2rem; color:var(--muted); }
+    .note { padding:1rem 1.2rem; border-left:5px solid var(--accent); background:#eef7f7; }
+    table { width:100%; border-collapse:collapse; margin:1rem 0 2rem; font-size:.95rem; }
+    th, td { padding:.75rem; text-align:left; vertical-align:top; border:1px solid var(--line); }
+    th { background:#e9f1f3; }
+    a { color:var(--accent); text-underline-offset:3px; }
+    footer { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--muted); }
+    @media (max-width:760px) { table,thead,tbody,tr,th,td { display:block; } th { position:absolute; left:-9999px; } td { border-bottom:0; } tr { display:block; margin-bottom:1rem; border-bottom:1px solid var(--line); } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p>CNC process-planning reference</p>
+    <h1>CNC Drawing Feature to Carbide Tool Selection Guide</h1>
+    <p class="lede">Choose a cutter from the feature, tolerance, material and access condition together—not from nominal diameter alone.</p>
+  </header>
+
+  <section>
+    <h2>Start with drawing logic</h2>
+    <p>A defensible tool list begins by identifying the controlling datum, the feature's functional requirement, the material failure mode and the inspection method. Only then should diameter, flute count, coating, edge preparation, reach and holder be fixed.</p>
+    <ol>
+      <li>Create stable datums before tolerance-sensitive features.</li>
+      <li>Separate bulk removal from residual-stock and finishing work.</li>
+      <li>Model holder and neck clearance at full feature depth.</li>
+      <li>Assign chip, burr, heat or abrasive-wear control by material.</li>
+      <li>Connect the last tool touching a critical feature to an inspection gate.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Feature-to-tool decision map</h2>
+    <table>
+      <thead><tr><th>Feature</th><th>Tool direction</th><th>Why</th><th>Alternative to question</th></tr></thead>
+      <tbody>
+        <tr><td>Open aluminum pocket</td><td>Three-flute polished carbide, sharp edge, short projection</td><td>Provides chip space and reduces built-up material</td><td>Dense coated steel geometry that recuts packed chips</td></tr>
+        <tr><td>Heat-resistant-alloy cavity</td><td>Variable-pitch coated carbide rougher with corner radius</td><td>Balances edge strength, heat resistance and stable engagement</td><td>Fragile aluminum geometry with no edge preparation</td></tr>
+        <tr><td>Thin wall or rib</td><td>Reduced-neck semifinisher plus dedicated low-force finisher</td><td>Reach clears the feature while cutting length remains stiff</td><td>Long-flute universal cutter used for every stage</td></tr>
+        <tr><td>Precision bore</td><td>Positioning/roughing tool followed by fine boring or reaming when justified</td><td>Separates entry position, size and surface control</td><td>Assuming one drill meets position, diameter and finish simultaneously</td></tr>
+        <tr><td>Cross-hole edge</td><td>Programmed back-chamfer or reverse-cut carbide tool</td><td>Creates a measurable internal edge break</td><td>Uncontrolled manual scraping inside an inaccessible bore</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Tooling variables that drawings make important</h2>
+    <h3>Diameter and residual stock</h3>
+    <p>Use the largest rigid tool that can clear the feature, then reserve smaller cutters for material the larger tool physically cannot reach. Rest machining keeps micro tools out of already-cleared volume.</p>
+    <h3>Flute count, helix and edge</h3>
+    <p>Flute count determines chip space and available teeth; helix changes axial force; polishing changes adhesion; a corner radius or hone changes edge strength. These choices should reflect chip shape, wall direction and interrupted entry.</p>
+    <h3>Reach and holder</h3>
+    <p>Specify cutting length, neck length and holder projection independently. Hydraulic and shrink-fit holders can provide low runout and compact access, but the assembled tool must be measured when micro features make runout a meaningful share of chip load.</p>
+  </section>
+
+  <section>
+    <h2>Detailed hypothetical CNC cases</h2>
+    <p>These independently written cases illustrate how the same workflow changes with material and geometry:</p>
+    <ul>
+      <li><a href="https://axkxa.com/7075-t651-waveguide-filter-cnc-tooling-thin-iris-walls-cavity-corners/">7075-T651 waveguide filter: thin iris walls and R0.6 corners</a></li>
+      <li><a href="https://axkxa.com/aisi-8620-gerotor-housing-cnc-tooling-epitrochoid-bore-carburizing-stock/">AISI 8620 gerotor housing: epitrochoid bore and carburizing allowance</a></li>
+      <li><a href="https://axkxa.com/incoloy-800h-tube-support-grid-cnc-tool-selection-bore-array-expansion-slots/">Incoloy 800H support grid: bore-array sequencing and expansion slots</a></li>
+      <li><a href="https://axkxa.com/aisi-1215-spool-sleeve-cnc-tooling-deep-bore-metering-windows-honing-stock/">AISI 1215 spool sleeve: deep bore, windows and honing stock</a></li>
+    </ul>
+    <p class="note">For multilingual drawing-led tooling case studies and editorial standards, visit the <a href="https://axkxa.com/technology/">CNC Precision Hub knowledge areas</a>.</p>
+  </section>
+
+  <footer>
+    <p>Educational reference only. Released drawings, tool-maker data, machine limits, workholding analysis and inspection plans remain authoritative.</p>
+    <p><a href="https://github.com/tao2018/cnc-tooling-reference">View the source and contribution rules on GitHub</a>.</p>
+  </footer>
+</main>
+</body>
+</html>
