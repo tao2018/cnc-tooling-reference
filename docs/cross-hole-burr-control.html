@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cross-Hole Burr Control Before Final CNC Bore Finishing</title>
+  <meta name="description" content="A practical CNC reference for controlling cross-hole burrs before final bore finishing by choosing drill sequence, back-chamfer tools, boring allowance and inspection gates.">
+  <meta name="robots" content="index,follow">
+  <style>
+    :root { color-scheme: light; --ink:#14202b; --muted:#526372; --line:#d9e1e7; --accent:#0b6574; --paper:#fff; --wash:#f3f7f8; }
+    * { box-sizing:border-box; }
+    body { margin:0; font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:var(--wash); }
+    main { max-width:1040px; margin:auto; padding:48px 24px 72px; background:var(--paper); }
+    h1 { font-size:clamp(2rem,4vw,3.2rem); line-height:1.08; max-width:930px; }
+    h2 { margin-top:2.4rem; border-bottom:2px solid var(--line); padding-bottom:.35rem; }
+    h3 { margin-top:1.6rem; }
+    p, li { max-width:84ch; }
+    .lede { font-size:1.18rem; color:var(--muted); }
+    .note { padding:1rem 1.2rem; border-left:5px solid var(--accent); background:#eef7f7; }
+    table { width:100%; border-collapse:collapse; margin:1rem 0 2rem; font-size:.95rem; }
+    th, td { padding:.72rem; text-align:left; vertical-align:top; border:1px solid var(--line); }
+    th { background:#e9f1f3; }
+    a { color:var(--accent); text-underline-offset:3px; }
+    footer { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--muted); }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p>CNC tooling reference</p>
+    <h1>Cross-Hole Burr Control Before Final CNC Bore Finishing</h1>
+    <p class="lede">When a radial or angled hole breaks into a precision bore, the burr plan must be decided before the bore is finished—not after inspection finds a scratch or folded lip.</p>
+  </header>
+
+  <section>
+    <h2>Start from the intersection, not the drill size</h2>
+    <p>A cross-hole burr is not just a housekeeping issue. In hydraulic sleeves, valve bodies, sensor bosses and pump covers, a folded edge can scratch the mating part, trap chips, cut an O-ring or change flow. The drawing may call out only a hole size and bore finish, but the manufacturing plan has to decide which tool creates, controls and verifies the intersection edge.</p>
+    <p>The safest sequence is usually to leave a measurable bore allowance, drill or interpolate the cross feature, remove the internal burr with a programmed tool, then finish the bore after the risky intersection work is complete.</p>
+  </section>
+
+  <section>
+    <h2>Feature-to-tool decision map</h2>
+    <table>
+      <thead><tr><th>Intersection condition</th><th>Tooling choice</th><th>Why it works</th><th>Inspection gate</th></tr></thead>
+      <tbody>
+        <tr><td>Small radial oil hole into a hardened bore</td><td>Carbide drill undersize, ball-style back-chamfer tool, final fine boring pass</td><td>The bore finish tool removes remaining witness marks after the burr is controlled.</td><td>Borescope plus bore gauge after final pass</td></tr>
+        <tr><td>Angled coolant hole into nickel-alloy port</td><td>Spot drill, coated carbide peck drill, reverse-chamfer cutter with coolant-through holder</td><td>Short pecks and reverse chamfer prevent a hot curled burr from folding into the port.</td><td>Pin check and magnified port-edge review</td></tr>
+        <tr><td>Polymer metering hole into a soft valve bore</td><td>Polished micro drill, air blast, single-lip back-deburr, final light boring or reaming</td><td>Sharp uncoated geometry shears instead of smearing a fuzzy lip.</td><td>Optical check after rest time</td></tr>
+        <tr><td>Cast iron lubrication cross hole</td><td>Carbide drill, dry extraction, small abrasive-free edge break before register finish</td><td>Graphite dust is removed before it can recut the sealing bore.</td><td>Air blowout, bore gauge and white-cloth wipe</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practical sequencing rules</h2>
+    <h3>Leave bore stock until the burr event is over</h3>
+    <p>If the bore is finished first, drilling the cross hole can push a burr into the finished surface and force handwork. Leaving a small, planned allowance lets the final boring tool restore size, roundness and finish after intersection control.</p>
+    <h3>Do not make hand deburring the only plan</h3>
+    <p>Manual scraping may work on an open edge, but it is weak for hidden bore intersections. A programmed back-chamfer, lollipop cutter, orbital brush or controlled reverse toolpath is easier to inspect and repeat.</p>
+    <h3>Match tool edge to material failure mode</h3>
+    <p>Nickel alloys need heat and work-hardening control. Aluminum needs chip evacuation and built-up edge prevention. Polymers need sharp polished tools. Cast iron needs dust control. The same cross-hole drawing can require very different tooling because the burr forms differently.</p>
+  </section>
+
+  <section>
+    <h2>Related AXKXA examples</h2>
+    <ul>
+      <li><a href="https://www.axkxa.com/haynes-230-combustor-igniter-boss-cnc-tool-selection-angled-seal-cone-cooling-holes/">Haynes 230 igniter boss: angled seal cone and cooling holes</a></li>
+      <li><a href="https://www.axkxa.com/c360-brass-microfluidic-valve-seat-cnc-tool-selection-conical-seat-tiny-cross-holes/">C360 brass microfluidic valve seat: conical seal and tiny cross holes</a></li>
+      <li><a href="https://www.axkxa.com/am-316l-hydraulic-valve-block-cnc-tool-selection-printed-datum-cleanup-deep-o-ring-ports/">AM 316L hydraulic valve block: deep O-ring ports and internal burr inspection</a></li>
+    </ul>
+    <p class="note">Use these references as tooling logic examples, not as substitute process sheets. Released drawings, machine limits and inspection rules remain authoritative.</p>
+  </section>
+
+  <footer>
+    <p><a href="./index.html">Back to the CNC Drawing Feature to Carbide Tool Selection Guide</a></p>
+  </footer>
+</main>
+</body>
+</html>
