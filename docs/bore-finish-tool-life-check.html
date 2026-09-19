@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check Bore Finish Drift Before Changing a CNC Tool Offset</title>
+  <meta name="description" content="A practical CNC inspection sequence for deciding whether bore finish drift comes from a worn carbide tool, chip recutting, fixture movement or an offset change.">
+</head>
+<body>
+  <article>
+    <h1>Check Bore Finish Drift Before Changing a CNC Tool Offset</h1>
+    <p>A bore that begins to look dull or torn is not automatically an offset problem. An offset change may bring a measured diameter back toward target while leaving the source of the finish change in place. The more useful first question is whether the evidence points to edge wear, recut chips, holder runout, or movement of the work datum.</p>
+
+    <h2>Start with a repeatable inspection sequence</h2>
+    <ol>
+      <li>Keep the same measurement position and clean the bore before comparing parts.</li>
+      <li>Record diameter, finish observation, spindle load trend, and the tool's elapsed cutting path.</li>
+      <li>Inspect the carbide edge under magnification for a polished land, chipping, built-up material, or notch wear.</li>
+      <li>Check chips at the exit and inside any blind pocket. A curled chip recut along the wall can imitate a worn tool.</li>
+      <li>Verify holder runout at the cutting diameter before changing the offset.</li>
+    </ol>
+
+    <p>If finish changes but diameter remains stable, an offset correction is usually the wrong first move. If diameter and finish move together in a repeatable direction, confirm the cutting edge and fixture before applying a small documented correction. A correction is a response to a verified, stable change; it is not a substitute for tool-life control.</p>
+
+    <h2>Choose the inspection tool to match the bore feature</h2>
+    <table>
+      <thead><tr><th>Observed feature</th><th>Useful check</th><th>What it separates</th></tr></thead>
+      <tbody>
+        <tr><td>Shiny band near bore entry</td><td>Magnified edge inspection and load log</td><td>Rubbing or built-up edge versus a size-only shift</td></tr>
+        <tr><td>Scratch repeating at one angular position</td><td>Runout check and toolholder inspection</td><td>Single-edge engagement versus chip damage</td></tr>
+        <tr><td>Finish worsens after a pocket fills</td><td>Chip evacuation review and air/coolant path check</td><td>Chip recutting versus carbide geometry</td></tr>
+        <tr><td>Diameter shifts after unclamping</td><td>Free-state bore measurement</td><td>Fixture influence versus in-cut tool change</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Apply the principle to drawing-based tooling cases</h2>
+    <p>The same evidence-first approach helps when the bore has another function beyond diameter. A drill guide needs its bore axis interpreted from its seating surface; a sensor collar needs an internal groove and keyway to stay related to its bore; a polymer harness clamp needs its curved seat to remain clean after release.</p>
+    <ul>
+      <li><a href="https://www.axkxa.com/ti-6al-7nb-dental-drill-guide-cnc-tool-selection-angled-sleeve-bore-tooth-saddle/">Ti-6Al-7Nb drill guide tooling for an angled sleeve bore</a></li>
+      <li><a href="https://www.axkxa.com/s32760-super-duplex-sensor-collar-cnc-tool-selection-seal-groove-radial-keyway/">S32760 sensor collar tooling for an internal groove and keyway</a></li>
+      <li><a href="https://www.axkxa.com/pekk-aerospace-harness-clamp-cnc-tool-selection-curved-saddle-retention-ears/">PEKK harness clamp tooling for a curved saddle and thin ears</a></li>
+    </ul>
+
+    <h2>Before the next offset change</h2>
+    <p>Write down the tool condition, measurement location, chip state, holder result, and fixture state. That compact record makes it possible to distinguish a controlled compensation from a drifting process. It also tells the next operator why the carbide tool was changed or why a finish pass was retained.</p>
+  </article>
+</body>
+</html>
