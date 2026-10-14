@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finish the Magnetic Air Gap After Slot Release, Not Before</title>
+  <meta name="description" content="A practical CNC sequence for magnetic pole pieces: rough the air-gap surface, release thin bridges symmetrically, then finish and inspect the functional gap.">
+</head>
+<body>
+  <article>
+    <h1>Finish the Magnetic Air Gap After Slot Release, Not Before</h1>
+    <p>A magnetic pole piece can meet every diameter on the drawing and still fail at the working air gap. The usual trap is sequencing: the curved or conical gap surface is finished first, then narrow isolation slots release thin magnetic bridges and move the surface that was just qualified. Tool selection matters, but datum ownership and stress-release order decide whether the final geometry survives.</p>
+
+    <h2>Separate the clamp datum from the magnetic datum</h2>
+    <p>Use the mounting pad and locating bores to establish a repeatable machining frame. Rough the air-gap surface from those datums, but retain measurable stock for a later finishing or controlled lapping operation. This keeps the first setup focused on material removal and the final setup focused on the functional relationship between locating bores, bridge thickness and the gap surface.</p>
+    <p>A fine-pitch face mill with sharp PVD carbide inserts reduces bending while establishing the pad. Dowel bores should be interpolated and fine-bored when position matters; a reamer can size a hole but cannot reliably correct a displaced pilot.</p>
+
+    <h2>Release thin bridges in a balanced sequence</h2>
+    <p>Isolation slots are not independent grooves. Every slot changes the stiffness around the pole face. Open opposing slots alternately and keep sacrificial support behind the remaining bridges. A fine-tooth carbide slitting cutter usually creates a more predictable lateral force than a long, narrow end mill. The latter can deflect, taper the walls and leave unequal bridge thickness.</p>
+    <table>
+      <thead><tr><th>Feature</th><th>Preferred tool</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td>Mounting pad</td><td>Fine-pitch face mill, sharp PVD carbide</td><td>Low cutting force establishes a stable clamp datum.</td></tr>
+        <tr><td>Air-gap roughing</td><td>Radius end mill in a hydraulic or shrink-fit holder</td><td>Controlled engagement leaves uniform finishing stock.</td></tr>
+        <tr><td>Locating bores</td><td>Interpolation mill plus fine-boring head</td><td>Corrects both position and size.</td></tr>
+        <tr><td>Isolation slots</td><td>Fine-tooth carbide slitting cutter with bridge support</td><td>Balances side force and protects thin bridges.</td></tr>
+        <tr><td>Final air gap</td><td>Variable-helix semifinish tool plus controlled form lap</td><td>Removes slot-release movement without rounding the profile.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Reserve the last stock for the functional surface</h2>
+    <p>After slotting and any specified intermediate stress relief, relocate from the mounting pad and datum bores. Semifinish the gap with a short variable-helix carbide tool, then use a controlled form lap only for the final small allowance. Hand polishing is a poor substitute: it can round the arc or cone and remove more material at the edges than at the center.</p>
+    <p>Collect ferromagnetic chips and use nonmagnetic clean tooling around the final surface. Residual particles can score the lap, distort contact measurements or remain hidden in a narrow slot.</p>
+
+    <h2>Inspect the released geometry, not the temporary geometry</h2>
+    <p>CMM inspection should relate the datum bores to the finished gap profile. Optical measurement records bridge width and slot burr direction. A gap master, radius gauge or verified profile routine checks the functional surface after all stiffness-changing features are open. Magnetic property tests belong after the specified final heat treatment; dimensions alone do not prove permeability or flux performance.</p>
+
+    <h2>Drawing-based examples</h2>
+    <ul>
+      <li><a href="https://www.axkxa.com/hiperco-50-actuator-pole-shoe-cnc-tool-selection-lapped-air-gap-thin-flux-bridges/">Hiperco 50 pole-shoe tooling for a lapped air gap and thin flux bridges</a></li>
+      <li><a href="https://www.axkxa.com/armco-pure-iron-pole-piece-cnc-tool-selection-air-gap-cone-radial-slots/">ARMCO pure-iron pole-piece tooling for an air-gap cone and radial slots</a></li>
+      <li><a href="https://www.axkxa.com/invar-36-optical-spacer-frame-cnc-tool-selection-flexure-slots-kinematic-pads/">Invar 36 spacer-frame tooling for flexure slots and kinematic pads</a></li>
+    </ul>
+
+    <h2>A practical stop rule</h2>
+    <p>Stop the process when bridge thickness begins trending, a slot develops a directional burr toward the gap, the finishing allowance becomes asymmetric, or the lapping contact pattern shifts to one edge. Those signals indicate that the released part no longer matches the assumed stiffness model; another offset correction will not repair the sequence.</p>
+  </article>
+</body>
+</html>
