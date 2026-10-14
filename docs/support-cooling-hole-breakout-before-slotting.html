@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support Cooling-Hole Breakout Before Cutting the Adjacent Slot</title>
+  <meta name="description" content="A practical CNC sequence for cooling holes near thin slots in brittle or notch-sensitive materials, with tool, support and inspection choices.">
+</head>
+<body>
+  <article>
+    <h1>Support Cooling-Hole Breakout Before Cutting the Adjacent Slot</h1>
+    <p>When a small cooling hole exits beside a feather-seal slot or thin window, the drawing creates a sequencing problem. If the slot is opened first, the drill breaks through into an unsupported edge. If the hole is drilled first, the remaining material can act as a temporary backing wall—but only when the later slot operation will remove the controlled breakout zone. The correct order comes from the final intersection, not from a generic “holes before milling” rule.</p>
+
+    <h2>Map the final intersection before choosing the drill</h2>
+    <p>Overlay the hole axis, slot wall and minimum edge distance. Record the effective drill depth before breakthrough and the thickness of the final ligament. In brittle intermetallics, ceramics and heat-resistant alloys, that final ligament often determines whether the exit shears cleanly, forms a burr, or breaks away as a chip. A diameter callout alone cannot select the tool.</p>
+
+    <h2>Use temporary material as process support</h2>
+    <p>Keep the adjacent slot closed while drilling whenever its stock can support the hole exit without trapping chips. A short micrograin carbide drill with reinforced point geometry, minimum projection and controlled coolant flow reduces bending. Prepare an oblique entry with a small flat mill or a compatible spot angle; a deep mismatched spotting cone can steer the drill.</p>
+    <table>
+      <thead><tr><th>Drawing condition</th><th>Tool or process choice</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td>Hole exits into future slot stock</td><td>Drill before opening the slot</td><td>Temporary stock supports the final ligament.</td></tr>
+        <tr><td>Oblique or curved entry</td><td>Small flat mill or short carbide spotter</td><td>Prevents skating without creating an oversized cone.</td></tr>
+        <tr><td>Notch-sensitive alloy</td><td>Reinforced-point micrograin carbide, short reach</td><td>Limits edge chipping and bending at breakthrough.</td></tr>
+        <tr><td>Thin slot wall after release</td><td>Fine-tooth slitting cutter or low-force trochoidal mill</td><td>Removes supported breakout while controlling lateral force.</td></tr>
+        <tr><td>Hidden intersection</td><td>Optical comparison, borescope or CT as justified</td><td>Verifies edge condition without enlarging the passage.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Reduce feed before the last ligament fails</h2>
+    <p>Breakthrough load should be planned from the actual exit geometry. Reduce feed before the drill reaches the final ligament; do not wait for a spindle-load spike that may arrive after the edge has fractured. Pecking is useful only if it clears chips. Repeated re-entry can rub a heat-resistant alloy or push fragments against the unsupported exit.</p>
+
+    <h2>Remove the support with a low-force slot operation</h2>
+    <p>After drilling, inspect the entrance and any accessible exit evidence. Then open the slot using a toolpath that avoids pulling the thin wall toward the cutter. A fine-tooth carbide slitting cutter balances side load on a straight narrow slot. A small trochoidal end mill may be better when the slot curves, provided its radial engagement and holder runout are controlled. Leave a separate wall-finishing allowance rather than forcing one tool to rough, release and finish the fragile edge.</p>
+
+    <h2>Inspect the intersection after both operations</h2>
+    <p>The final check occurs after the slot exposes the hole. Measure edge loss, hole diameter and slot-wall position together. A clean-looking slot is not enough if the drill exit has receded into the functional wall. Establish a stop rule based on growing exit chips, directional burrs, thrust trend or diameter drift; replacing the drill before fracture is cheaper than trying to blend an uncontrolled breakout.</p>
+
+    <h2>Drawing-based comparisons</h2>
+    <ul>
+      <li><a href="https://www.axkxa.com/gamma-tial-turbine-shroud-segment-cnc-tool-selection-feather-seal-slots-cooling-holes/">Gamma TiAl shroud segment with feather-seal slots and cooling holes</a></li>
+      <li><a href="https://www.axkxa.com/silicon-nitride-bearing-cage-diamond-tool-selection-thin-windows-oil-pockets-edge-chip-control/">Silicon nitride bearing cage with thin windows and edge-chip control</a></li>
+      <li><a href="https://www.axkxa.com/96-percent-alumina-ceramic-nozzle-plate-cnc-tool-selection-micro-orifices-inlet-pockets/">96% alumina nozzle plate with micro-orifices and inlet pockets</a></li>
+    </ul>
+
+    <p>The process principle is simple: preserve support until the hole has crossed its most fragile boundary, then remove that support with the lowest-force operation that produces the final slot.</p>
+  </article>
+</body>
+</html>
