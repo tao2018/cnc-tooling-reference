@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>5-Axis Surface Mark at Rotary Reversal: Tool-Orientation Review</title>
+  <meta name="description" content="A practical review for 5-axis surface marks near rotary-axis reversal: contact point, effective diameter, feed collapse, holder clearance and inspection evidence.">
+  <link rel="canonical" href="https://tao2018.github.io/cnc-tooling-reference/five-axis-rotary-reversal-surface-mark.html">
+  <style>body{font:17px/1.7 system-ui;color:#203040;max-width:940px;margin:40px auto;padding:0 22px}h1{line-height:1.2}table{border-collapse:collapse;width:100%}td,th{border:1px solid #bbcbd5;padding:12px;text-align:left;vertical-align:top}a{color:#076b90}.note{border-left:4px solid #076b90;padding:12px;background:#f0f7fa}code{background:#eef2f3;padding:.1rem .3rem}</style>
+</head>
+<body><main>
+  <p><a href="index.html">CNC tooling reference</a> / 5-axis surface review</p>
+  <h1>When a 5-Axis Toolpath Passes Collision Check but Marks the Surface at Rotary Reversal</h1>
+  <p>A collision-free simulation does not prove that a five-axis finishing path will leave a uniform surface. A short witness mark can appear where a rotary axis slows, reverses or changes which axis carries most of the orientation motion. The tool may remain clear of the part while its contact point, effective cutting diameter and actual feed at the edge change.</p>
+  <p class="note">This is a diagnostic worksheet for a hypothetical finish path, not a universal machine setting. Machine kinematics, controller behavior, tool geometry and the released drawing remain authoritative.</p>
+
+  <h2>First identify what actually changed at the mark</h2>
+  <p>Do not begin by increasing spindle speed or reducing the programmed stepover. Locate the mark in toolpath time and compare it with the commanded tool vector, rotary-axis position and velocity, linear-axis velocity, feed override and controller look-ahead state. A reversal visible in the A- or C-axis trace is evidence of a kinematic event; it is not yet proof of the root cause.</p>
+  <table><thead><tr><th>Evidence near the mark</th><th>Question it supports</th><th>What it does not prove</th></tr></thead><tbody>
+    <tr><td>Rotary velocity crosses zero</td><td>Did an axis reverse or dwell?</td><td>That the rotary axis alone created the surface error.</td></tr>
+    <tr><td>Tool-tip feed falls while programmed feed is constant</td><td>Did kinematic synchronization or an axis limit reduce actual motion?</td><td>That feed override should simply be raised.</td></tr>
+    <tr><td>Contact point moves toward a ball-nose center</td><td>Did effective cutting diameter and local cutting speed fall?</td><td>That a larger tilt is collision-safe.</td></tr>
+    <tr><td>Scallop direction turns abruptly</td><td>Did the surface normal or lead/lean strategy change too quickly?</td><td>That the nominal stepover value is wrong everywhere.</td></tr>
+    <tr><td>Only one flute leaves a repeated line</td><td>Are runout, holder seating or edge damage contributing?</td><td>That the CAM orientation is acceptable.</td></tr>
+  </tbody></table>
+
+  <h2>Reconstruct the cutting contact, not only the tool-center path</h2>
+  <p>For a ball nose, nominal diameter is not the cutting diameter at every contact point. Contact close to the center has a small effective diameter and low local cutting speed. Tilting the tool can move contact away from the center, but the correct vector also depends on curvature, cusp direction, tool reach, holder clearance and the machine's rotary travel.</p>
+  <p>A barrel or lens tool adds another dependency: the large cutting radius can reduce the number of passes, yet a small orientation error changes where the surface meets that radius. Verify the tool definition, usable edge, holder and neck as one measured assembly. For tapered tools, distinguish cutting-side clearance from the holder envelope; a path can clear the holder while loading the wrong part of the cutting edge.</p>
+  <p>The related <a href="https://www.axkxa.com/5-axis-cnc-milling-tool-orientation-surface-finish-complex-parts/">five-axis tool-orientation guide</a> compares ball, barrel and tapered-tool choices by contact point, effective diameter, collision envelope and rotary motion. Use it to select a plausible geometry before changing the path.</p>
+
+  <h2>Review the path in five linked layers</h2>
+  <ol>
+    <li><strong>Drawing layer:</strong> mark the functional surface, allowable texture direction, profile tolerance and blend boundary. Decide whether the observed line is cosmetic or violates the specified surface.</li>
+    <li><strong>Contact layer:</strong> calculate or inspect contact location, local surface normal, effective cutting diameter and cusp direction at samples before, through and after the event.</li>
+    <li><strong>Assembly layer:</strong> use measured gauge length, runout, neck diameter and holder geometry. A nominal tool model cannot expose assembly error.</li>
+    <li><strong>Kinematic layer:</strong> plot linear and rotary position, velocity and—where available—acceleration. Flag reversals, near-zero motion, travel boundaries and abrupt changes in the chosen inverse solution.</li>
+    <li><strong>Verification layer:</strong> correlate the timestamp with spindle load, sound or vibration records and the measured location on the part. Preserve the failing and revised path for comparison.</li>
+  </ol>
+
+  <h2>Choose the smallest defensible correction</h2>
+  <table><thead><tr><th>Observed mechanism</th><th>Candidate correction to validate</th><th>Why a broad change is risky</th></tr></thead><tbody>
+    <tr><td>Contact approaches the ball center</td><td>Smoothly bias lead or lean so contact remains on a productive band, then recheck the complete holder envelope.</td><td>A fixed larger tilt can create another collision or a poor cusp direction elsewhere.</td></tr>
+    <tr><td>One rotary axis reverses inside the functional surface</td><td>Move the reversal to nonfunctional stock, choose another valid orientation solution or smooth the vector within drawing and machine limits.</td><td>Suppressing the event numerically can change contact or exceed another axis.</td></tr>
+    <tr><td>Tool-tip feed collapses near an axis limit</td><td>Reorient the setup or path so the motion uses a more favorable part of the machine's kinematic range.</td><td>Raising programmed feed cannot guarantee synchronized axes stay within their limits.</td></tr>
+    <tr><td>Scallop direction turns at a patch boundary</td><td>Blend the surface parameterization or extend and trim the finishing region.</td><td>A smaller global stepover adds cycle time without removing the directional discontinuity.</td></tr>
+    <tr><td>A single damaged flute dominates</td><td>Correct the assembly or replace the edge, then repeat the same controlled path.</td><td>CAM edits can mask rather than diagnose an asymmetric tool.</td></tr>
+  </tbody></table>
+
+  <h2>Separate stepover from orientation</h2>
+  <p>Stepover controls one part of the theoretical cusp, while orientation controls contact location and the direction in which that cusp is laid onto the surface. A uniform nominal stepover can still produce nonuniform texture on changing curvature. The <a href="https://www.axkxa.com/3d-contour-cnc-machining-ball-nose-end-mill-step-over-surface-finish/">ball-nose stepover and cusp-height guide</a> explains why local effective radius, slope and tool engagement belong in the calculation.</p>
+  <p>When a thin blade or impeller channel is involved, the path also changes support. Balanced channel roughing and delayed trailing-edge finishing may matter more than a small theoretical cusp improvement. The <a href="https://www.axkxa.com/duplex-stainless-pump-impeller-five-axis-tooling-blade-finish-balance/">duplex impeller tooling case</a> shows how tool orientation, blade support and work-hardening risk interact.</p>
+
+  <h2>Inspection closes the diagnosis</h2>
+  <p>Record the mark relative to datums, not merely to a screenshot. Use the drawing's inspection method for profile, blend and texture. A scan or CMM can establish whether the event is geometric; directional roughness measurement or an agreed surface comparator can address texture. If the revision changes the tool vector, verify adjacent surfaces and the transition, not only the original mark.</p>
+  <p>Keep a compact evidence packet: tool assembly ID and measured runout, path revision, postprocessor revision, machine configuration, sampled axis trace, contact-point plot, first-piece inspection and the reason the correction was accepted. That record distinguishes a repeatable process decision from a visually pleasing test cut.</p>
+
+  <h2>Release checklist</h2>
+  <ul>
+    <li>The marked location is tied to drawing coordinates and toolpath time.</li>
+    <li>Contact point and effective cutting diameter remain within the intended cutting band.</li>
+    <li>The measured tool, neck and holder envelope clear the full revised motion.</li>
+    <li>No unreviewed rotary reversal or abrupt inverse-solution change remains on the functional surface.</li>
+    <li>Actual feed and axis behavior were checked, not inferred from programmed feed alone.</li>
+    <li>The corrected surface passes the specified geometric and texture checks.</li>
+  </ul>
+  <p>Background on contact and effective diameter: <a href="https://www.sandvik.coromant.com/en-us/knowledge/milling/pages/profile-milling.aspx">Sandvik Coromant profile milling guidance</a>. The diagnostic sequence above is independently written and does not reproduce a machine builder's postprocessor or approval procedure.</p>
+  <footer><p>Published 15 November 2026. Educational tooling reference; released drawings, machine-builder limits and validated shop procedures remain authoritative.</p></footer>
+</main></body></html>
